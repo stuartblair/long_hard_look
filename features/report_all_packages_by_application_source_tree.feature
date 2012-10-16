@@ -6,7 +6,7 @@ Feature: Report of all packages defined by each application source tree
 	Scenario: Text report
 		Given an application source tree called AppA
 		And AppA contains the package org.service.components
-		When I generate a text report
+		When I generate a text report of all_packages_by_application
 		Then the output should contain exactly
 """
 Packages by application source tree
