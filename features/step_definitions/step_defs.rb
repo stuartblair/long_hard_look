@@ -14,7 +14,9 @@ Given /^AppA contains the package (\S+)$/ do |java_package|
 end
 
 When /^I generate a (\S+) report of (\S+)$/ do |format, report|
-	run_simple("ruby -I#{path_to('lib')} #{path_to('bin')}/long_hard_look --report=#{report} --format=#{format} test_workspace", false) 
+	steps %{
+		When I run `long_hard_look --report=#{report} --format=#{format} test_workspace`
+	}
 end
 
 Then /^the output should contain exactly$/ do |exact_output|
