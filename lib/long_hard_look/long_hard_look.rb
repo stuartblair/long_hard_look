@@ -1,15 +1,8 @@
+require 'erb'
 module LongHardLook
 	class LongHardLook
 	
-		workspace = ARGV
-		
-		def self.path_prefix
-			"#{File.dirname(__FILE__)}/../../"
-		end
-
-		def self.java_file_from(path)
-			/test_workspace\/(.+?)\/.*\/(.+?)$/.match(Dir.glob("test_workspace/**/*.java")[0])[2]
-		end
+		workspace = ARGV[ARGV.size - 1]
 
 		def self.package_from(path)
 			package = ""
@@ -18,23 +11,24 @@ module LongHardLook
 			package = /\s*package (.+);/.match(file_contents)[1]
 		end
 
-		def self.application_name()
-			"AppA"
+		def self.application_name_from(path)
+			path.split('/').last
 		end
 
 		app_to_java_file = {}
 
-		Dir.glob("#{path_prefix}/test_workspace/**/*.java").each do |java_file|
-			app_to_java_file[application_name] = package_from(java_file)
+		Dir.glob("#{workspace}/*").each do |application_path|
+			Dir.glob("#{application_path}/**/*.java").each do |java_file|
+				app_to_java_file[application_name_from(application_path)] = package_from(java_file)
+			end
 		end
-		
-		app_to_java_file.keys.each do |application_path|
-			puts <<OUTPUT
-Packages by application source tree
+
+OUTPUT =
+%{Packages by application source tree
 ___________________________________
-#{application_name}
-* #{app_to_java_file[application_name]}
-OUTPUT
-		end
+<%for application in app_to_java_file.keys%><%=application%>
+* <%=app_to_java_file[application]%>
+<%end%>}
+		puts ERB.new(OUTPUT).result(binding)
 	end
 end
