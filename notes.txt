@@ -1,0 +1,32 @@
+Having completed written the first scenario and got it passing by any means 
+necessary, I've proved that I can fire an end-to-end test against my system.
+
+Let's start with a review of the implementation of long_hard_look.rb. The first
+thing to note is that my entire application is in a single class. It does
+everything.
+
+Let's think about the separate responsibilities it deals with as a precursor to
+decomposition.
+
+Deal with input from the user by processing commandline inputs
+Interact with the filesystem to return a set of files matching a pattern
+Parse files into java classes
+Generate a report for the packages to applications mapping
+Render a report in a format
+
+Let's introduce unit tests to drive out each of these.
+
+First is dealing with user input. I need something to parse the various bits of
+my interaction with the user. At present, that's purely through the commandline
+UI. Let's introduce a commandline UI class to model input from the User as 
+perceived by the application. 
+
+Having added this, I'll start with a test to drive it out. Rather than use TDD
+to re-tread the ground of argument processing, I'm going to let my test drive
+out my requirements for argument processing, but for my implementation, I'll be
+relying upon the excellent Trollop gem.
+
+After adding the unit test for the TextUI class, I then define just enough
+functionality to get the test passing.
+===
+
