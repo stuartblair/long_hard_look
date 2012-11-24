@@ -15,6 +15,8 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = LongHardLook::VERSION
 
+	gem.add_dependency "trollop", "~>2.0"
+
 	gem.add_development_dependency "rake"
 	gem.add_development_dependency "rspec", "~>2.11"
 	gem.add_development_dependency "cucumber", "~>1.2"
