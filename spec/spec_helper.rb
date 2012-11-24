@@ -1,6 +1,14 @@
 $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'fileutils'
-	
+
+def silence_warnings(&block)
+	warn_level = $VERBOSE
+	$VERBOSE = nil
+	result = block.call
+	$VERBOSE = warn_level
+	result
+end
+
 def clear_filesystem(file_system)
 	FileUtils.rm_rf(file_system)
 end
