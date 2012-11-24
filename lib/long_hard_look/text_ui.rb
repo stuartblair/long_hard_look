@@ -2,7 +2,7 @@ require 'trollop'
 
 module LongHardLook
 	class TextUI
-		attr_reader :report
+		attr_reader :report, :format
 
 		def initialize
 			options = Trollop::options do
@@ -11,6 +11,7 @@ module LongHardLook
 			end
 
 			@report = options[:report]
+			@format = options[:format]
 		end
 	end
 end

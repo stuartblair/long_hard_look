@@ -7,8 +7,12 @@ describe LongHardLook::TextUI do
 			ARGV = ["--report=package_report", "--format=text", "/home/stuart/test_workspace"]
 		end
 
-		it "reports the package correctly" do
+		it "Maps the report type correctly" do
 			LongHardLook::TextUI.new.report.should eql "package_report"
+		end
+
+		it "Maps the format type correctly" do
+			LongHardLook::TextUI.new.format.should eql "text"
 		end
 	end
 end
