@@ -1,8 +1,9 @@
 require 'erb'
+require 'long_hard_look/text_ui'
 module LongHardLook
 	class LongHardLook
 	
-		workspace = ARGV[ARGV.size - 1]
+		ui = TextUI.new
 
 		def self.package_from(path)
 			package = ""
@@ -17,7 +18,7 @@ module LongHardLook
 
 		app_to_java_file = {}
 
-		Dir.glob("#{workspace}/*").each do |application_path|
+		Dir.glob("#{ui.workspace}/*").each do |application_path|
 			Dir.glob("#{application_path}/**/*.java").each do |java_file|
 				app_to_java_file[application_name_from(application_path)] = package_from(java_file)
 			end

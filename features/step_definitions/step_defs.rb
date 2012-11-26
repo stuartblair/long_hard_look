@@ -15,7 +15,7 @@ end
 
 When /^I generate a (\S+) report of (\S+)$/ do |format, report|
 	steps %{
-		When I run `long_hard_look --report=#{report} --format=#{format} #{test_workspace}`
+		When I run `long_hard_look --report=#{report} --format=#{format} --workspace=#{test_workspace}`
 	}
 end
 
