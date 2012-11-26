@@ -15,5 +15,9 @@ module LongHardLook
 			@format = options[:format]
 			@workspace = options[:workspace]
 		end
+
+		def render(output)
+			puts output
+		end
 	end
 end

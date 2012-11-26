@@ -24,12 +24,13 @@ module LongHardLook
 			end
 		end
 
+
 OUTPUT =
 %{Packages by application source tree
 ___________________________________
 <%for application in app_to_java_file.keys%><%=application%>
 * <%=app_to_java_file[application]%>
 <%end%>}
-		puts ERB.new(OUTPUT).result(binding)
+		ui.render(ERB.new(OUTPUT).result(binding))
 	end
 end
