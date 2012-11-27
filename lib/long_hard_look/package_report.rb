@@ -1,17 +1,13 @@
 module LongHardLook
 	class PackageReport
-		def initialize(ui, filesystem_adapter)
+		def initialize(ui, java_application)
 			@ui = ui
-			@filesystem_adapter = filesystem_adapter
+			@java_application = java_application
 		end
 
 		def run
-			application_to_package = {}
-			@filesystem_adapter.find(:below => @ui.workspace, :type => :java).each do |java_file|
-			end
-
 			output = %{<%=render_header%>
-<%=render_application("AppA", ["org.test"])%>}
+<%=render_application(@java_application.name, @java_application.packages)%>}
 		@ui.render(ERB.new(output).result(binding))
 		end
 
