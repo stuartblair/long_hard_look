@@ -6,9 +6,13 @@ module LongHardLook
 		end
 
 		def run
+			application_to_package = {}
+			@filesystem_adapter.find(:below => @ui.workspace, :type => :java).each do |java_file|
+			end
+
 			output = %{<%=render_header%>
 <%=render_application("AppA", ["org.test"])%>}
-			@ui.render(ERB.new(output).result(binding))
+		@ui.render(ERB.new(output).result(binding))
 		end
 
 		def render_header
