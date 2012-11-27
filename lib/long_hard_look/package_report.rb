@@ -6,13 +6,21 @@ module LongHardLook
 		end
 
 		def run
-			@ui.render(<<OUTPUT
-Packages by application source tree
-___________________________________
-AppA
-* org.test
-OUTPUT
-								)
+			output = %{<%=render_header%>
+<%=render_application("AppA", ["org.test"])%>}
+			@ui.render(ERB.new(output).result(binding))
 		end
+
+		def render_header
+			ERB.new(%{Packages by application source tree
+___________________________________}).result(binding)
+		end
+
+		def render_application(application, packages)
+			ERB.new(%{<%=application%><% packages.each do |package| %>
+* <%=package%>
+<% end %>}).result(binding)
+		end
+
 	end
 end
