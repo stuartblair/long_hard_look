@@ -12,7 +12,7 @@ module LongHardLook
 			@filesystem_adapter.find(:java).each do |java_file|
 				packages << extract_package(java_file)
 			end
-			packages
+			packages.uniq
 		end
 
 		private
