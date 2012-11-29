@@ -30,3 +30,21 @@ After adding the unit test for the TextUI class, I then define just enough
 functionality to get the test passing.
 ===
 
+It'd be really nice to include the following kinds of analyses.
+
+What applications communicate with each other using wsdl SOAP, rest, shared database table, shared file, JMS message.
+
+What applications share a database with another application?
+
+What applications modify a database that is modified by another application?
+
+What packages extend beyond a single module (jar)?
+
+What packages extend beyond a single application?
+
+(Once we have alignment between package and module) What are the edge classes and interfaces for each package and where are they referenced from?
+
+Which methods aren't invoked?
+
+Which ivy dependencies are redundant (where none of the classes or resources included in a module are referenced in an application that declared it as a dependency.
+
