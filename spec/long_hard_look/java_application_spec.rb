@@ -28,6 +28,13 @@ module LongHardLook
 					@java_application.packages.should eql ["org.test"]
 				end
 			end
+
+			context 'with no Java classes' do
+				it "returns an empty array" do
+					@filesystem_adapter.stub(:find).with(:java).and_return([])
+					@java_application.packages.should eql []
+				end
+			end
 		end
 	end
 end
