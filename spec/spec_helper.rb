@@ -52,4 +52,6 @@ def create_class(package, klass)
 	end
 end
 
-
+def create_file(name)
+	File.open(name, 'w') 
+end
