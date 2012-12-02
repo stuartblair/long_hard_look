@@ -1,5 +1,7 @@
 module LongHardLook
 	class FileAdapter
+		attr_reader :content
+
 		def initialize(path, content)
 			@path = path
 			@content = content

@@ -21,6 +21,17 @@ module LongHardLook
 			end
 
 			context "when a file has an multiple dots in its name" do
+				it "returns only the extension" do
+					@file_adapter = FileAdapter.new("/home/stuart/this.is.sometimes.see.bin", "")
+					@file_adapter.extension.should eql "bin"
+				end
+			end
+		end
+
+		describe "#content" do 
+			it "reflects the content of the file as set on the FileAdapter" do
+				@file_adapter = FileAdapter.new("/home/stuart/README", "file content")
+				@file_adapter.content.should eql "file content"
 			end
 		end
 	end

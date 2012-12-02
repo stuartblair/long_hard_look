@@ -8,7 +8,11 @@ module LongHardLook
 
 		def find(extension)
 			Dir.glob("#{@path}/**/*.#{extension}").map do |path|
-				FileAdapter.new(path, "")
+				content = ""
+				IO.readlines(path).each do |line| 
+					content << line
+				end
+				FileAdapter.new(path, content)
 			end
 		end
 	end

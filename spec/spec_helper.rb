@@ -53,5 +53,7 @@ def create_class(package, klass)
 end
 
 def create_file(name)
-	File.open(name, 'w') 
+	File.open(name, 'w') do |file|
+		file.write(yield) if block_given?
+	end
 end

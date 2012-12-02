@@ -10,7 +10,8 @@ module LongHardLook
 		def packages
 			packages = []
 			@filesystem_adapter.find(:java).each do |java_file|
-				packages << extract_package(java_file)
+				extracted_package = extract_package(java_file)
+				packages << extracted_package if extracted_package
 			end
 			packages.uniq
 		end
@@ -18,7 +19,9 @@ module LongHardLook
 		private
 
 		def extract_package(java_file)
-			/\s*package (.+);/.match(java_file.contents)[1]
+			match_data = /\s*package (.+);/.match(java_file.content)
+			return nil if !match_data 
+			match_data[1]
 		end
 	end
 end

@@ -13,8 +13,7 @@ module LongHardLook
 			before(:each) do 
 				within_workspace(@test_workspace) do
 					create_file("txt")
-					create_file("target.txt")
-					create_file("also_found.txt")
+					create_file("target.txt") {"content"}
 				end
 				@filesystem_adapter = FilesystemAdapter.new(@test_workspace)
 			end
@@ -23,6 +22,7 @@ module LongHardLook
 				it "returns only files matching the required extension" do
 					@filesystem_adapter.find(:txt).each do |file|
 						file.extension.should eql "txt"
+						file.content.should eql "content"
 					end
 				end
 			end
