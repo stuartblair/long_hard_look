@@ -3,7 +3,7 @@ require 'long_hard_look/text_ui'
 module LongHardLook
 	describe TextUI do
 		before(:each) do
-			@text_ui = TextUI.new(["--report", "package_report", "--format", "text", "--workspace", "/home/stuart/test_workspace"])
+			@text_ui = TextUI.new(["--report", "package_report", "--format", "text", "--workspace", "/home/stuart/test_workspace", "--application" , "AppA"])
 		end
 
 		context "when valid commandline is provided" do
@@ -17,6 +17,10 @@ module LongHardLook
 
 			it "maps the workspace correctly" do
 				@text_ui.workspace.should eql "/home/stuart/test_workspace"
+			end
+
+			it "maps the application correctly" do
+				@text_ui.application.should eql "AppA"
 			end
 		end
 
