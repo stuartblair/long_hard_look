@@ -15,3 +15,24 @@ AppA
 * org.service.components
 
 """
+
+	Scenario: Multiple applications with multiple packages are displayed
+		Given an application source tree called AppA
+		And AppA contains the package org.service.components
+		And AppA contains the package org.service.view
+		And an application source tree called AppB
+		And AppB contains the package org.service.view
+		When I generate a text report of all_packages_by_application
+		Then the output should contain exactly
+"""
+Packages by application source tree
+___________________________________
+AppA
+* org.service.components
+* org.service.view
+AppB
+* org.service.view
+
+"""
+
+
