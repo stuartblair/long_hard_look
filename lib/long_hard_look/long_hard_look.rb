@@ -10,7 +10,7 @@ module LongHardLook
 		def initialize
 			ui = TextUI.new
 			filesystem_adapter = FilesystemAdapter.new(ui.workspace)
-			java_application = JavaApplication.new(filesystem_adapter, "AppA")
+			java_application = JavaApplication.new(filesystem_adapter, ui.application)
 			PackageReport.new(ui, java_application).run
 		end
 	end

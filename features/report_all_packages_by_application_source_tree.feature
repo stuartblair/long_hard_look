@@ -15,7 +15,7 @@ AppA
 * org.service.components
 
 """
-
+@wip
 	Scenario: Multiple applications with multiple packages are displayed
 		Given an application source tree called AppA
 		And AppA contains the package org.service.components
